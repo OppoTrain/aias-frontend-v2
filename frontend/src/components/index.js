@@ -24,3 +24,7 @@ export { default as ProtectedRoute } from './layout/ProtectedRoute';
 export { default as MembersTable } from './tables/MembersTable';
 export { default as EventsTable } from './tables/EventsTable';
 export { default as ResourcesTable } from './tables/ResourcesTable';
+
+export { default as ForgotPasswordForm } from './forms/ForgotPasswordForm';
+export { default as VerifyCodeForm } from './forms/VerifyCodeForm';
+export { default as SetPasswordForm } from './forms/SetPasswordForm';

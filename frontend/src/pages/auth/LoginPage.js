@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ← إضافة useNavigate
 import LoginImage from "../assets/images/login_logo.png"; // ← import الصورة
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // ← إنشاء navigate
 
   const containerStyle = {
     display: "flex",
@@ -11,7 +13,7 @@ export default function Login({ onLogin }) {
     alignItems: "flex-start",
     minHeight: "100vh",
     paddingTop: "80px",
-    backgroundColor: "#fff", // تبسيط اللون
+    backgroundColor: "#fff",
   };
 
   const boxStyle = {
@@ -65,6 +67,11 @@ export default function Login({ onLogin }) {
     }
   };
 
+  // ← دالة للانتقال لصفحة استرجاع كلمة المرور
+  const handleForgotPassword = () => {
+    navigate("/forgot-password");
+  };
+
   return (
     <div style={containerStyle}>
       <div style={boxStyle}>
@@ -73,7 +80,7 @@ export default function Login({ onLogin }) {
             Login
           </h1>
           <p style={{ marginBottom: "20px" }}>Login to access your account</p>
-          
+
           <label>Email</label>
           <input 
             type="email" 
@@ -93,9 +100,21 @@ export default function Login({ onLogin }) {
           />
 
           <div style={{ textAlign: "right", marginBottom: "20px" }}>
-            <a href="/forget" style={{ color: "#2563eb", textDecoration: "underline", fontSize: "14px" }}>
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#2563eb",
+                textDecoration: "underline",
+                fontSize: "14px",
+                cursor: "pointer",
+                padding: 0,
+              }}
+            >
               Forgot Password
-            </a>
+            </button>
           </div>
 
           <button type="submit" style={buttonStyle}>Log in</button>

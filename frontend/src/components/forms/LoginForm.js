@@ -3,8 +3,9 @@ import { Form, Row, Col, Alert } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Button, Card } from '../index';
+import Button from '../ui/Button';
 import { useAuth } from '../../hooks';
+import { useNavigate } from 'react-router-dom'; 
 
 const schema = yup.object({
   email: yup.string().email('Invalid email format').required('Email is required'),
@@ -14,7 +15,8 @@ const schema = yup.object({
 const LoginForm = () => {
   const [showError, setShowError] = useState(false);
   const { login, loading } = useAuth();
-  
+  const navigate = useNavigate(); // ← إنشاء navigate
+
   const {
     register,
     handleSubmit,
@@ -33,15 +35,14 @@ const LoginForm = () => {
   };
 
   const handleForgotPassword = () => {
-    console.log('Forgot password clicked');
-    // Navigate to forgot password page
+    navigate('/forgot-password');
   };
 
   return (
     <div className="login-form-container">
       <div className="mb-4">
         <h1 className="h2 mb-2 fw-bold text-dark">Login</h1>
-        <p className="text-muted mb-0">Login to access your travelwise account</p>
+        <p className="text-muted mb-0">Login to access your AIAS account</p>
       </div>
 
       {showError && (
@@ -88,7 +89,7 @@ const LoginForm = () => {
             <button
               type="button"
               className="btn btn-link p-0 text-primary text-decoration-none"
-              onClick={handleForgotPassword}
+              onClick={handleForgotPassword} 
             >
               Forgot Password
             </button>

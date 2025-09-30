@@ -3,10 +3,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Container, Row, Col } from 'react-bootstrap';
 import { AuthProvider } from './hooks/useAuth';
-import { LoginForm } from './components';
+import LoginForm from './components/forms/LoginForm'; // ✅ استدعاء صحيح
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import LoginImage from './assets/images/login_logo.png'; // ← import الصورة
+
+// Import Images
+import LoginImage from './assets/images/login_logo.png';
+
+// Import Pages
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import VerifyCodePage from './pages/auth/VerifyCodePage';
+import SetPasswordPage from './pages/auth/SetPasswordPage';
 
 const queryClient = new QueryClient();
 
@@ -14,19 +21,25 @@ const LoginPage = () => {
   return (
     <Container fluid className="min-vh-100 bg-light">
       <Row className="min-vh-100 g-0">
-        <Col lg={6} className="d-flex align-items-center justify-content-center p-4">
+        <Col
+          lg={6}
+          className="d-flex align-items-center justify-content-center p-4"
+        >
           <div style={{ maxWidth: '400px', width: '100%' }}>
             <LoginForm />
           </div>
         </Col>
 
-        <Col lg={6} className="d-none d-lg-flex align-items-center justify-content-center bg-white p-4">
+        <Col
+          lg={6}
+          className="d-none d-lg-flex align-items-center justify-content-center bg-white p-4"
+        >
           <div className="text-center">
-            <img 
-              src={LoginImage} 
-              alt="Login illustration" 
-              className="img-fluid" 
-              style={{ maxWidth: '400px', height: 'auto' }} 
+            <img
+              src={LoginImage}
+              alt="Login illustration"
+              className="img-fluid"
+              style={{ maxWidth: '400px', height: 'auto' }}
             />
           </div>
         </Col>
@@ -41,7 +54,11 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
+            {/* Authentication Flow */}
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/verify-code" element={<VerifyCodePage />} />
+            <Route path="/set-password" element={<SetPasswordPage />} />
             <Route path="/" element={<LoginPage />} />
           </Routes>
         </Router>

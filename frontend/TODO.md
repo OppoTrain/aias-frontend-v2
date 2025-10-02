@@ -1,0 +1,5 @@
+- [x] Consolidate table styles into UsersTable.css and remove duplicates from Dashboard.css
+- [x] Fix .stat-card in Dashboard.css to use consistent white background
+- [x] Refactor DashboardPage.js to use UsersTable component
+- [x] Fix image paths and replace alert actions in DashboardPage.js
+- [x] Update Sidebar.css for flexible height

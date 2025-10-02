@@ -1,129 +1,159 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ← إضافة useNavigate
-import LoginImage from "../assets/images/login_logo.png"; // ← import الصورة
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import LoginImage from '../../assets/images/login_logo.png';
 
-export default function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // ← إنشاء navigate
+const schema = yup.object({
+  email: yup.string().email('Invalid email format').required('Email is required'),
+  password: yup.string().required('Password is required')
+});
 
-  const containerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    minHeight: "100vh",
-    paddingTop: "80px",
-    backgroundColor: "#fff",
-  };
+const LoginPage = ({ onLogin }) => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schema)
+  });
 
-  const boxStyle = {
-    display: "flex",
-    maxWidth: "1000px",
-    width: "100%",
-    backgroundColor: "white",
-    overflow: "hidden",
-  };
-
-  const formStyle = {
-    flex: 1,
-    padding: "40px",
-    display: "flex",
-    flexDirection: "column",
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "12px",
-    marginBottom: "15px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-  };
-
-  const buttonStyle = {
-    width: "100%",
-    padding: "14px",
-    backgroundColor: "#6B8FB5",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "16px",
-  };
-
-  const imageStyle = {
-    flex: 1,
-    objectFit: "contain",
-    width: "100%",
-    height: "100%",
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (email && password) {
-      onLogin();
-    } else {
-      alert("Please enter email and password");
+  const onSubmit = async (data) => {
+    try {
+      setShowError(false);
+      setLoading(true);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock authentication
+      if (data.email && data.password) {
+        localStorage.setItem('aias_token', 'mock_token_123');
+        onLogin();
+      } else {
+        setShowError(true);
+      }
+    } catch (error) {
+      setShowError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // ← دالة للانتقال لصفحة استرجاع كلمة المرور
   const handleForgotPassword = () => {
-    navigate("/forgot-password");
+    navigate('/forgot-password');
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={boxStyle}>
-        <form style={formStyle} onSubmit={handleSubmit}>
-          <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "10px" }}>
-            Login
-          </h1>
-          <p style={{ marginBottom: "20px" }}>Login to access your account</p>
+    <Container fluid className="min-vh-100 bg-light">
+      <Row className="min-vh-100 g-0">
+        <Col lg={6} className="d-flex align-items-center justify-content-center p-4">
+          <div style={{ maxWidth: '460px', width: '100%' }}>
+            <div className="mb-4">
+              <h1 className="h2 mb-2 fw-bold text-dark">Login</h1>
+              <p className="text-muted mb-0">Login to access your AIAS account</p>
+            </div>
 
-          <label>Email</label>
-          <input 
-            type="email" 
-            placeholder="Enter your email" 
-            style={inputStyle}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+            {showError && (
+              <Alert variant="danger" className="mb-3">
+                Invalid credentials. Please try again.
+              </Alert>
+            )}
 
-          <label>Password</label>
-          <input 
-            type="password" 
-            placeholder="Enter your password" 
-            style={inputStyle}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-3">
+                <Form.Label className="fw-medium text-dark">Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="enter your email"
+                  {...register('email')}
+                  isInvalid={!!errors.email}
+                  style={{
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    border: '1px solid #e1e5e9',
+                    fontSize: '16px'
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email?.message}
+                </Form.Control.Feedback>
+              </div>
 
-          <div style={{ textAlign: "right", marginBottom: "20px" }}>
-            <button
-              type="button"
-              onClick={handleForgotPassword}
-              style={{
-                background: "none",
-                border: "none",
-                color: "#2563eb",
-                textDecoration: "underline",
-                fontSize: "14px",
-                cursor: "pointer",
-                padding: 0,
-              }}
-            >
-              Forgot Password
-            </button>
+              <div className="mb-3">
+                <Form.Label className="fw-medium text-dark">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="enter your password"
+                  {...register('password')}
+                  isInvalid={!!errors.password}
+                  style={{
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    border: '1px solid #e1e5e9',
+                    fontSize: '16px'
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.password?.message}
+                </Form.Control.Feedback>
+              </div>
+
+              <div className="mb-4 text-end">
+                <button
+                  type="button"
+                  className="btn btn-link p-0 text-primary text-decoration-none"
+                  onClick={handleForgotPassword}
+                >
+                  Forgot Password
+                </button>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                style={{
+                  width: '100%',
+                  padding: '14px',
+                  backgroundColor: '#6B8FB5',
+                  borderColor: '#6B8FB5',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
+                  fontSize: '16px'
+                }}
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Logging in...
+                  </>
+                ) : (
+                  'Log in'
+                )}
+              </Button>
+            </Form>
           </div>
+        </Col>
 
-          <button type="submit" style={buttonStyle}>Log in</button>
-        </form>
-
-        <div style={{ flex: 1 }}>
-          <img src={LoginImage} alt="login illustration" style={imageStyle} />
-        </div>
-      </div>
-    </div>
+        <Col lg={6} className="d-none d-lg-flex align-items-center justify-content-center bg-white p-4">
+          <div className="text-center">
+            <img 
+              src={LoginImage} 
+              alt="Login illustration" 
+              className="img-fluid" 
+              style={{ maxWidth: '400px', height: 'auto' }} 
+            />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
+
+export default LoginPage;

@@ -12,10 +12,35 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     setLoading(true);
     try {
-      const response = await authApi.login(credentials);
-      setToken(response.data.token);
-      setUser(response.data.user);
-      return response.data;
+      // Test credentials
+      const validCredentials = {
+        email: 'test@admin.com',
+        password: 'admin123'
+      };
+
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      if (credentials.email === validCredentials.email && 
+          credentials.password === validCredentials.password) {
+        
+        // Mock successful response
+        const mockResponse = {
+          token: 'mock-jwt-token',
+          user: {
+            id: 1,
+            email: credentials.email,
+            name: 'Test Admin',
+            role: 'admin'
+          }
+        };
+
+        setToken(mockResponse.token);
+        setUser(mockResponse.user);
+        return mockResponse;
+      } else {
+        throw new Error('Invalid credentials');
+      }
     } catch (error) {
       throw error;
     } finally {

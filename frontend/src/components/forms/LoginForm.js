@@ -29,6 +29,8 @@ const LoginForm = () => {
     try {
       setShowError(false);
       await login(data);
+      // Navigate to dashboard after successful login
+      navigate('/dashboard');
     } catch (error) {
       setShowError(true);
     }
@@ -44,6 +46,13 @@ const LoginForm = () => {
         <h1 className="h2 mb-2 fw-bold text-dark">Login</h1>
         <p className="text-muted mb-0">Login to access your AIAS account</p>
       </div>
+
+      {/* Test Credentials Alert */}
+      <Alert variant="info" className="mb-3">
+        <strong>Test Credentials:</strong><br />
+        Email: test@admin.com<br />
+        Password: admin123
+      </Alert>
 
       {showError && (
         <Alert variant="danger" className="mb-3">

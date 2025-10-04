@@ -1,35 +1,71 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Sidebar.css';
+import logo from '../image/logo.png';
 
-const Sidebar = () => (
-    <div className="sidebar vh-100 p-3 border-end d-flex flex-column justify-content-between" style={{ width: '250px' }}>
-        <div>
-            <h5 className="mb-4">AIAS Chapter University</h5>
-            <ul className="nav flex-column">
-                <li className="nav-item">
-                    <Link className="nav-link d-flex align-items-center" to="/">
-                        <i className="bi bi-people-fill me-2"></i> Members
+
+const Sidebar = () => {
+    const location = useLocation();
+
+    const isActive = (path) => {
+        if (path === '/' && location.pathname === '/') return true;
+        if (path !== '/' && location.pathname.startsWith(path)) return true;
+        return false;
+    };
+
+    return (
+        <div className="custom-sidebar">
+            {/* Header Section */}
+            <div className="sidebar-header">
+                <div className="logo-section">
+                    <img src={logo} alt="AIAS Logo" className="logo-image" />
+                </div>
+            </div>
+
+            {/* Navigation Menu */}
+            <div className="sidebar-menu">
+                <div className={`menu-item ${isActive('/dashboard') ? 'active' : ''}`}>
+                    <Link to="/dashboard" className="menu-link">
+                        <i className="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
                     </Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link d-flex align-items-center" to="/events">
-                        <i className="bi bi-calendar-event-fill me-2"></i> Events
+                </div>
+
+                <div className={`menu-item ${isActive('/') && location.pathname === '/' ? 'active' : ''}`}>
+                    <Link to="/" className="menu-link">
+                        <i className="bi bi-people"></i>
+                        <span>Members</span>
                     </Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link d-flex align-items-center" to="/resources">
-                        <i className="bi bi-journal-text me-2"></i> Resources
+                </div>
+
+                <div className={`menu-item ${isActive('/events') ? 'active' : ''}`}>
+                    <Link to="/events" className="menu-link">
+                        <i className="bi bi-calendar3"></i>
+                        <span>Events</span>
                     </Link>
-                </li>
-            </ul>
+                </div>
+
+                <div className={`menu-item ${isActive('/resources') ? 'active' : ''}`}>
+                    <Link to="/resources" className="menu-link">
+                        <i className="bi bi-journal-text"></i>
+                        <span>Resources</span>
+                    </Link>
+                </div>
+            </div>
+
+            {/* Logout Section */}
+            <div className="sidebar-footer">
+                <div className="menu-item logout-item">
+                    <button className="logout-link" onClick={() => window.location.reload()}>
+                        <i className="bi bi-box-arrow-left"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <button className="btn btn-outline-danger mt-4 d-flex align-items-center">
-            <i className="bi bi-box-arrow-right me-2"></i> Logout
-        </button>
-    </div>
-);
+    );
+};
 
 export default Sidebar;

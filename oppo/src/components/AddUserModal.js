@@ -51,9 +51,9 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                     <div className="row">
                         <Form.Group className="col-md-6 mb-3">
                             <Form.Label>First Name</Form.Label>
-                            <Form.Control 
-                                type="text" 
-                                placeholder="Enter first name" 
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter first name"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 required
@@ -61,9 +61,9 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                         </Form.Group>
                         <Form.Group className="col-md-6 mb-3">
                             <Form.Label>Last Name</Form.Label>
-                            <Form.Control 
-                                type="text" 
-                                placeholder="Enter last name" 
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter last name"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 required
@@ -72,9 +72,9 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                     </div>
                     <Form.Group className="mb-3">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control 
-                            type="email" 
-                            placeholder="Enter email" 
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -82,9 +82,9 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control 
-                            type="password" 
-                            placeholder="Enter password" 
+                        <Form.Control
+                            type="password"
+                            placeholder="Enter password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -92,9 +92,9 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Re-enter Password</Form.Label>
-                        <Form.Control 
-                            type="password" 
-                            placeholder="Re-enter password" 
+                        <Form.Control
+                            type="password"
+                            placeholder="Re-enter password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
@@ -110,8 +110,8 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                         </Form.Group>
                         <Form.Group className="col-md-6 mb-3">
                             <Form.Label>Date of Birth</Form.Label>
-                            <Form.Control 
-                                type="date" 
+                            <Form.Control
+                                type="date"
                                 value={dob}
                                 onChange={(e) => setDob(e.target.value)}
                             />
@@ -119,9 +119,9 @@ const AddUserModal = ({ show, handleClose, handleAddUser }) => {
                     </div>
                     <Form.Group className="mb-3">
                         <Form.Label>Address</Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            placeholder="Enter address" 
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                         />

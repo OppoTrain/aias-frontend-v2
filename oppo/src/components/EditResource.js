@@ -24,7 +24,7 @@ const EditResource = ({ onNext }) => {
 
   const resourceTypes = [
     'Youtube Video',
-    'Article', 
+    'Article',
     'Book',
     'Podcast',
     'Course'
@@ -36,11 +36,11 @@ const EditResource = ({ onNext }) => {
         <div className="col-md-8 col-lg-6">
           <div className="card">
             <div className="card-body p-5">
-              
+
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <div></div>
                 <h2 className="card-title mb-0 text-center">Edit this resource</h2>
-                <button 
+                <button
                   className="btn btn-link p-0"
                   title="Options"
                 >
@@ -58,9 +58,9 @@ const EditResource = ({ onNext }) => {
               </div>
 
               <form onSubmit={handleSubmit}>
-               
+
                 <div className="mb-3">
-                  <label htmlFor="title" className="form-label" style={{textAlign: 'left', display: 'block'}}>
+                  <label htmlFor="title" className="form-label" style={{ textAlign: 'left', display: 'block' }}>
                     Title <span className="text-danger">*</span>
                   </label>
                   <input
@@ -75,7 +75,7 @@ const EditResource = ({ onNext }) => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="type" className="form-label" style={{textAlign: 'left', display: 'block'}}>
+                  <label htmlFor="type" className="form-label" style={{ textAlign: 'left', display: 'block' }}>
                     Type <span className="text-danger">*</span>
                   </label>
                   <select
@@ -95,7 +95,7 @@ const EditResource = ({ onNext }) => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="description" className="form-label" style={{textAlign: 'left', display: 'block'}}>
+                  <label htmlFor="description" className="form-label" style={{ textAlign: 'left', display: 'block' }}>
                     Description <span className="text-danger">*</span>
                   </label>
                   <textarea
@@ -110,7 +110,7 @@ const EditResource = ({ onNext }) => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="websiteUrl" className="form-label" style={{textAlign: 'left', display: 'block'}}>
+                  <label htmlFor="websiteUrl" className="form-label" style={{ textAlign: 'left', display: 'block' }}>
                     Website URL <span className="text-danger">*</span>
                   </label>
                   <input
@@ -119,13 +119,13 @@ const EditResource = ({ onNext }) => {
                     id="websiteUrl"
                     name="websiteUrl"
                     value={formData.websiteUrl.replace('https://', '')}
-                    onChange={(e) => setFormData(prev => ({...prev, websiteUrl: 'https://' + e.target.value}))}
+                    onChange={(e) => setFormData(prev => ({ ...prev, websiteUrl: 'https://' + e.target.value }))}
                     required
                   />
                 </div>
 
                 <div className="mb-4">
-                  <label htmlFor="guest" className="form-label" style={{textAlign: 'left', display: 'block'}}>
+                  <label htmlFor="guest" className="form-label" style={{ textAlign: 'left', display: 'block' }}>
                     Guest
                   </label>
                   <input
@@ -139,8 +139,8 @@ const EditResource = ({ onNext }) => {
                 </div>
 
                 <div className="d-grid">
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn btn-primary btn-lg text-white"
                   >
                     Save

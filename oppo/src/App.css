@@ -1,388 +1,63 @@
-.user-approved-notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #10B981;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 280px;
-  animation: slideIn 0.3s ease-out;
-}
-
-.notification-icon {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.notification-icon i {
-  color: #10B981;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.notification-content {
-  flex: 1;
-}
-
-.notification-title {
-  font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 2px;
-}
-
-.notification-subtitle {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.notification-close {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 2px;
-  opacity: 0.7;
-  border-radius: 2px;
-  transition: opacity 0.2s;
-}
-
-.notification-close:hover {
-  opacity: 1;
-}
-
-.notification-close i {
-  font-size: 16px;
-}
-
-.page-header {
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  margin-bottom: 35px;
-}
-
-.page-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1f2937;
-  margin: 0;
-}
-
-.header-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-add-member {
-  background-color: #6B8FB5;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-add-member:hover {
-  background-color: #8ca7c5;
-}
-
-.btn-send-message {
-  background-color: white;
-  color: #6B8FB5;
-  border: 1.5px solid #6B8FB5;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-send-message:hover {
-  background-color: #f9fafb;
-  border-color: #9ca3af;
-}
-
-.members-table-wrapper {
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-.members-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.members-table thead tr {
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.members-table th {
-  padding: 20px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #5e6168;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  justify-content: space-between;
-}
-
-
-
-.member-row {
-  border-bottom: 1px solid #f3f4f6;
-  transition: background-color 0.2s;
-}
-
-.member-row:hover {
-  background-color: #f9fafb;
-}
-
-.member-row:last-child {
-  border-bottom: none;
-}
-
-.user-cell,
-.email-cell,
-.status-cell {
-  margin: 16px;
-  padding: 16px;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.user-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: #111827;
-}
-
-.email-cell {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-.status-cell {
-  text-align: right;
-}
-
-.status-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.status-badge.active {
-  background-color: #dcfce7;
-  color: #166534;
-
-}
-
-.status-badge.pending {
-  background-color: #fef3c7;
-  color: #92400e;
-}
-
-.status-badge.inactive {
-  background-color: #f1f5f9;
-  color: #64748b;
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-.status-dot.active {
-  background-color: #22c55e;
-}
-
-.status-dot.pending {
-  background-color: #eab308;
-}
-
-.status-dot.inactive {
-  background-color: #64748b;
-}
-
-
-
-.status-actions-cell {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  white-space: nowrap;
-  width: 1%;
-  padding-right: 35px;
-  padding-top: 20px;
-}
-
-.members-table th.col-status {
-  width: 1%;
-  white-space: nowrap;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 15px;
-}
-
-
-
-.action-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.2s;
-  align-items: left;
-}
-
-.action-btn i {
-  font-size: 18px;
-  justify-content: right;
-  color: #4E61F6;
-  width: 100%;
-}
-
-.message-action:hover {
-  background-color: #f3f4f6;
-}
-
-.delete-action:hover {
-  background-color: #fef2f2;
-}
-
-.delete-action i {
-  color: #ef4444;
-}
-
-.delete-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.delete-modal {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  height: 200px;
-  max-width: 90vw;
-  padding: 20px;
-}
-
-.modal-body {
+.App {
   text-align: center;
-  margin-bottom: 24px;
 }
 
-.modal-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #111827;
-  margin: 0 0 8px 0;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.modal-text {
-  font-size: 14px;
-  color: #6b7280;
-  margin: 5px;
-  line-height: 1.5;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.modal-buttons {
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-  gap: 12px;
-}
-
-.btn-delete-confirm {
-  flex: 1;
-  background-color: #ef4444;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
   color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-.btn-delete-confirm:hover {
-  background-color: #dc2626;
+.App-link {
+  color: #61dafb;
 }
 
-.btn-cancel-delete {
-  flex: 1;
-  background-color: white;
-  color: #64748b;
-  border: 1px solid #64748b;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.btn-cancel-delete:hover {
-  background-color: #64748b39;
-  border-color: #64748b5b;
-  color: #64748b;
+/* Layout for sidebar */
+.d-flex {
+  display: flex;
+}
 
+.flex-grow-1 {
+  flex-grow: 1;
+  margin-left: 200px;
+  /* تم تغييرها من 250px إلى 200px */
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
 
+.p-4 {
+  padding: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flex-grow-1 {
+    margin-left: 0;
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddUserModal from "./AddUserModal";
 import MessagePopup from "./MessagePopup";
+import './MembersTable.css';
 
 const membersData = [
   { id: 1, name: "Jane Cooper", email: "jessica.hanson@example.com", status: "Active", avatar: "JC" },
@@ -29,11 +30,11 @@ const getNextStatus = (currentStatus) => {
 
 const getAvatarColor = (name) => {
   const colors = {
-    "Jane Cooper": "#8B5CF6", 
-    "Wade Warren": "#1F2937", 
-    "Jacob Jones": "#10B981", 
-    "Devon Lane": "#8B5CF6", 
-    "Jerome Bell": "#8B5CF6", 
+    "Jane Cooper": "#8B5CF6",
+    "Wade Warren": "#1F2937",
+    "Jacob Jones": "#10B981",
+    "Devon Lane": "#8B5CF6",
+    "Jerome Bell": "#8B5CF6",
   };
   return colors[name] || "#8B5CF6";
 };
@@ -43,9 +44,7 @@ const MembersTable = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
   const [notification, setNotification] = useState(null);
-
   const [showAddModal, setShowAddModal] = useState(false);
-
   const [showMessagePopup, setShowMessagePopup] = useState(false);
   const [popupUser, setPopupUser] = useState(null);
 
@@ -78,11 +77,11 @@ const MembersTable = () => {
       if (member.id === memberId) {
         const newStatus = getNextStatus(member.status);
         const updatedMember = { ...member, status: newStatus };
-        
+
         if (newStatus === 'Active') {
           showNotification(member.name);
         }
-        
+
         return updatedMember;
       }
       return member;
@@ -116,13 +115,13 @@ const MembersTable = () => {
     };
 
     setMembers([...members, newUser]);
-    setShowAddModal(false); 
+    setShowAddModal(false);
   };
 
   return (
     <div className="members-page">
       <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet" />
-      
+
       {notification && (
         <div className="user-approved-notification">
           <div className="notification-icon">
@@ -137,9 +136,9 @@ const MembersTable = () => {
           </button>
         </div>
       )}
-      
+
       <div className="page-header">
-        <div className="page-title"></div>
+        <h1 className="page-title">Members</h1>
         <div className="header-actions">
           <button className="btn-add-member" onClick={() => setShowAddModal(true)}>Add Member</button>
           <button className="btn-send-message" onClick={handleSendMessageToAll}>
@@ -159,52 +158,52 @@ const MembersTable = () => {
           </thead>
           <tbody>
             {members.map((member) => (
-<tr key={member.id} className="member-row">
-  <td className="user-cell">
-    <div className="user-info">
-      <div 
-        className="avatar"
-        style={{ backgroundColor: getAvatarColor(member.name) }}
-      >
-        {member.avatar}
-      </div>
-      <span className="user-name">{member.name}</span>
-    </div>
-  </td>
+              <tr key={member.id} className="member-row">
+                <td className="user-cell">
+                  <div className="user-info">
+                    <div
+                      className="avatar"
+                      style={{ backgroundColor: getAvatarColor(member.name) }}
+                    >
+                      {member.avatar}
+                    </div>
+                    <span className="user-name">{member.name}</span>
+                  </div>
+                </td>
 
-  <td className="email-cell">{member.email}</td>
+                <td className="email-cell">{member.email}</td>
 
-  <td className="status-actions-cell">
-    <button className="status-btn" onClick={() => handleStatusChange(member.id)}>
-      <span className={`status-badge ${member.status.toLowerCase()}`}>
-        <span className={`status-dot ${member.status.toLowerCase()}`}></span>
-        {member.status}
-      </span>
-    </button>
+                <td className="status-cell">
+                  <div className="status-actions-wrapper">
+                    <button className="status-btn" onClick={() => handleStatusChange(member.id)}>
+                      <span className={`status-badge ${member.status.toLowerCase()}`}>
+                        <span className={`status-dot ${member.status.toLowerCase()}`}></span>
+                        {member.status}
+                      </span>
+                    </button>
 
-    <div className="action-buttons">
-      <button className="action-btn message-action" onClick={() => handleMessage(member)}>
-        <i className={member.status === 'Pending' ? "bi bi-check-circle" : "bi bi-chat-left-text"}></i>
-      </button>
-      <button className="action-btn delete-action" onClick={() => handleOpenModal(member)}>
-        <i className="bi bi-trash3"></i>
-      </button>
-    </div>
-  </td>
-</tr>
+                    <div className="action-buttons">
+                      <button className="action-btn message-action" onClick={() => handleMessage(member)}>
+                        <i className={member.status === 'Pending' ? "bi bi-check-circle" : "bi bi-chat-left-text"}></i>
+                      </button>
+                      <button className="action-btn delete-action" onClick={() => handleOpenModal(member)}>
+                        <i className="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      {}
-      <AddUserModal 
-        show={showAddModal} 
-        handleClose={() => setShowAddModal(false)} 
-        handleAddUser={handleAddUser} 
+      <AddUserModal
+        show={showAddModal}
+        handleClose={() => setShowAddModal(false)}
+        handleAddUser={handleAddUser}
       />
 
-      {}
       <MessagePopup
         show={showMessagePopup}
         handleClose={() => setShowMessagePopup(false)}

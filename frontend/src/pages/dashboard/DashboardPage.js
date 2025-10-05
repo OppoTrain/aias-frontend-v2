@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
-import UsersTable from '../../components/tables/UsersTable';
+import DataTable from '../../components/ui/DataTable';
 import mlImage from '../../assets/images/ml-essentials.PNG';
 import aiImage from '../../assets/images/ai-marketing.jpg';
 import uxImage from '../../assets/images/ux-bootcamp.jpg';
@@ -94,6 +94,75 @@ const DashboardPage = () => {
     console.log(`See details for event: ${title}`);
   };
 
+  const columns = [
+    {
+      key: 'name',
+      label: 'Users',
+      className: 'user-info-cell',
+      render: (user) => (
+        <>
+          <div className="user-initials">
+            {user.name
+              .split(' ')
+              .map(n => n[0])
+              .join('')
+              .toUpperCase()}
+          </div>
+          <span>{user.name}</span>
+        </>
+      ),
+    },
+    { key: 'email', label: 'E-mail' },
+    {
+      key: 'status',
+      label: 'Status',
+      render: (user) => (
+        <span
+          className={`status-badge ${
+            user.status === 'Active' ? 'status-active' : 'status-inactive'
+          }`}
+        >
+          {user.status}
+        </span>
+      ),
+    },
+  ];
+
+  const actions = [
+    {
+      title: 'Chat',
+      className: 'chat-btn',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="#3b82f6"
+          viewBox="0 0 24 24"
+        >
+          <path d="M21 6h-18v12h4v4l4-4h10z" />
+        </svg>
+      ),
+      onClick: (user) => console.log('Chat with', user.name),
+    },
+    {
+      title: 'Delete',
+      className: 'delete-btn',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="#ef4444"
+          viewBox="0 0 24 24"
+        >
+          <path d="M3 6h18v2h-18zm3 3h12v11h-12z" />
+        </svg>
+      ),
+      onClick: (user) => console.log('Delete user', user.name),
+    },
+  ];
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
@@ -154,11 +223,15 @@ const DashboardPage = () => {
       {/* Recent Users */}
       <div className="section">
         <h3 className="section-title">Recent Users</h3>
-        <UsersTable
-          users={users}
-          selectedUserIds={selectedUserIds}
+        <DataTable
+          data={users}
+          columns={columns}
+          selectedIds={selectedUserIds}
           onToggleSelectAll={toggleSelectAll}
-          onToggleSelectUser={toggleSelectUser}
+          onToggleSelectItem={toggleSelectUser}
+          actions={actions}
+          pagination={true}
+          headerButtons={[]}
         />
       </div>
     </div>

@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './hooks/useAuth';
 import Sidebar from './components/layout/Sidebar';
 import DashboardPage from './pages/dashboard/DashboardPage';
+import MembersPage from './pages/members/MembersPage';
 import LoginPage from './pages/auth/LoginPage';
 import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
 import VerifyCodePage from './pages/auth/VerifyCodePage';
@@ -40,6 +41,7 @@ function App() {
               <main className="main-content">
                 <Routes>
                   <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/members" element={<MembersPage />} />
                   <Route path="/" element={<Navigate to="/dashboard" />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </Routes>

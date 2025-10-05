@@ -1,0 +1,34 @@
+/* Shared styles for consistent page layout */
+
+.page-container {
+  padding: 2.5rem;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.page-header {
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
